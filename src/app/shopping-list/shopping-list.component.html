@@ -1,0 +1,12 @@
+<div class="row">
+    <div class="col-xs-10">
+        <app-shopping-edit (ingredientAdded)="add($event)"></app-shopping-edit>
+        <hr>
+        <ul class="list-group" *ngFor="let ing of ingredients">
+            <a appHighlight [defaultColor]="'transparent'" [highlightColor]="'green'" href="#" class="list-group-item"
+                style="cursor: pointer;">
+                {{ ing.name }} ({{ ing.amount}})
+            </a>
+        </ul>
+    </div>
+</div>
