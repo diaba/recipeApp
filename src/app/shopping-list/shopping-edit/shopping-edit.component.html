@@ -1,26 +1,43 @@
 <div class="container">
-    <form>
+    <form (ngSubmit)="onAddItem(f)" #f="ngForm">
         <div class="row mb-3">
             <div class="col-sm-5 form-group">
                 <label for="name" class="form-label">Name</label>
-                <input type="text" id="name" #nameInputName placeholder="name" class="form-control">
+                <input 
+                type="text"
+                 id="name"
+                  name="name"
+                  ngModel
+                  placeholder="name" 
+                  required
+                  class="form-control">
             </div>
             <div class="col-sm-2 form-group">
                 <label class="form-label" for="name">Amount</label>
-                <input type="number" id="amount" class="form-control" #amountInput>
+                <input 
+                type="number" 
+                id="amount" 
+                class="form-control"
+                  name="amount"
+                  ngModel
+                  required
+                  pattern="^[1-9]+[0-9]*$"
+                 >
             </div>
         </div>
         <div class="container row" role="toolbar" aria-label="Toolbar with button groups">
             <div class="col-xs-12 btn-toolbar">
                 <div class="btn-group me-2" role="group">
-                    <button class="btn btn-success  mr-2" type="button" (click)="onAddItem()">Add</button>
+                    <button class="btn btn-success  mr-2" type="button"
+                     [disabled]="!f.valid" (click)="onAddItem(f)">
+                     {{ editMode ? 'Update' : 'Add'}}</button>
                 </div>
                 <div class="btn-group me-2" role="group">
-                    <button class="btn btn-danger mr-2" type="button">Delete</button>
+                    <button *ngIf="editMode" class="btn btn-danger mr-2" (click)="onDeleteItem()" type="button">Delete</button>
                 </div>
 
                 <div class="btn-group" role="group">
-                    <button class="btn btn-primary" type="button">Clear</button>
+                    <button class="btn btn-primary" (click)="onClear()" type="button">Clear</button>
                 </div>
 
             </div>

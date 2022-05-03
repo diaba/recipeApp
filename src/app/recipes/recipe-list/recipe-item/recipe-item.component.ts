@@ -8,6 +8,7 @@ import { Recipe } from 'src/app/model/Recipe';
 })
 export class RecipeItemComponent implements OnInit {
   @Input() recipe: Recipe | undefined;
+  @Input() id : number = 1;
 
   constructor() {}
 
